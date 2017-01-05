@@ -43,9 +43,18 @@ const setWeather = (obj) => ({
 	obj
 })
 
-const toggleScale = () => ({
-	type: 'TOGGLE_SCALE'
+const toggleScale = (obj) => ({
+	type: 'TOGGLE_SCALE',
+	obj
 })
+
+const scaleClick = () => (
+	return (dispatch, getState) {
+		let { display } = getState()
+		let obj = (display.scale === 'F') ? {scale: 'C'} : {scale: 'F'}
+		return dispatch(toggleScale(obj))
+	}
+)
 
 const makeWeatherObj = (data) => ({
 	location: data.display_location.full,
@@ -67,6 +76,9 @@ const fetchWeather = (lat, lon) => {
 				return dispatch(setWeather(obj))
 			})
 		  .catch(err => {
+				if (err) {
+        	console.log(err.stack);
+    		}
 		  	return dispatch(setMessage('Unable to connect to Weather Underground. Please check your internet connection.'))
 		  });
   }
@@ -78,6 +90,9 @@ const fetchCoords = () => {
     navigator.geolocation.getCurrentPosition((pos) => {
 			return dispatch(fetchWeather(pos.coords.latitude, pos.coords.longitude))
 		}, (err) => {
+			if (err) {
+        console.log(err.stack);
+    	}
 			return dispatch(setMessage('Unable to access your location. Please check your privacy settings.'))
 		})
   }
@@ -102,8 +117,7 @@ const message = (state = null, action) => {
 const display = (state = {scale: 'F'}, action) => {
 	switch (action.type) {
 		case 'TOGGLE_SCALE':
-			let obj = (state.scale === 'F') ? {scale: 'C'} : {scale: 'F'}
-			return Object.assign({}, state, obj)
+			return Object.assign({}, state, action.obj)
 		default:
 			return state
 	}
@@ -292,7 +306,7 @@ const mapStateToPropsTwo = (state) => ({
 })
 
 const mapDispatchToPropsTwo = (dispatch) => ({
-	handleScaleClick: () => dispatch(toggleScale())
+	handleScaleClick: () => dispatch(scaleClick())
 })
 
 const WeatherContainer = connect(

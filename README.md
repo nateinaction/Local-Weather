@@ -4,7 +4,7 @@
 
 View your local weather.
 
-Demo: [http://codepen.io/nateinaction/full/MyZWRN/](http://codepen.io/nateinaction/full/MyZWRN/)
+Demo: [https://codepen.io/nateinaction/full/MyZWRN/](https://codepen.io/nateinaction/full/MyZWRN/)
 
 ### Features
 - User can see weather at their location
