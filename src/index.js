@@ -49,7 +49,7 @@ const toggleScale = (obj) => ({
 })
 
 const scaleClick = () => (
-	(dispatch, getState) {
+	(dispatch, getState) => {
 		let { display } = getState()
 		let obj = (display.scale === 'F') ? {scale: 'C'} : {scale: 'F'}
 		return dispatch(toggleScale(obj))
