@@ -49,7 +49,7 @@ const toggleScale = (obj) => ({
 })
 
 const scaleClick = () => (
-	return (dispatch, getState) {
+	(dispatch, getState) {
 		let { display } = getState()
 		let obj = (display.scale === 'F') ? {scale: 'C'} : {scale: 'F'}
 		return dispatch(toggleScale(obj))
@@ -84,8 +84,8 @@ const fetchWeather = (lat, lon) => {
   }
 }
 
-const fetchCoords = () => {
-  return dispatch => {
+const fetchCoords = () => (
+  (dispatch) => {
     dispatch(setFetchingCoords())
     navigator.geolocation.getCurrentPosition((pos) => {
 			return dispatch(fetchWeather(pos.coords.latitude, pos.coords.longitude))
@@ -96,7 +96,7 @@ const fetchCoords = () => {
 			return dispatch(setMessage('Unable to access your location. Please check your privacy settings.'))
 		})
   }
-}
+)
 
 /*
  * Redux Reducers
