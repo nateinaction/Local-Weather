@@ -202,6 +202,10 @@ const RefreshButton = (props) => {
 		<NavItem disabled={fetchingBool} onClick={props.onRefreshClick}><Glyphicon className='glyph-spin' glyph='refresh' /> {buttonMessage}</NavItem>
 	)
 }
+RefreshButton.propTypes =  {
+	fetching: PropTypes.object.isRequired,
+	onRefreshClick: PropTypes.func.isRequired
+}
 
 const ControlBar = (props) => (
 	<Navbar collapseOnSelect>
@@ -228,14 +232,25 @@ ControlBar.propTypes =  {
 const WeatherIcon = (props) => (
 	<i className={'wi wi-wu-' + props.icon} />
 )
+WeatherIcon.propTypes =  {
+	icon: PropTypes.string
+}
 
 const WeatherTemp = (props) => (
 	<span className='temp' onClick={() => props.onScaleClick()}>{props.temp[props.scale]}°{props.scale}</span>
 )
+WeatherTemp.propTypes =  {
+	temp: PropTypes.object,
+	scale: PropTypes.string.isRequired,
+	onScaleClick: PropTypes.func.isRequired
+}
 
 const WeatherCondition = (props) => (
 	<span>{props.condition}</span>
 )
+WeatherCondition.propTypes =  {
+	condition: PropTypes.string
+}
 
 const WeatherTempAndCondition = (props) => (
 	<h3>
@@ -249,10 +264,18 @@ const WeatherTempAndCondition = (props) => (
 			condition={props.weather.condition} />
 	</h3>
 )
+WeatherTempAndCondition.propTypes =  {
+	weather: PropTypes.object.isRequired,
+	scale: PropTypes.string.isRequired,
+	handleScaleClick: PropTypes.func.isRequired
+}
 
 const WeatherLocation = (props) => (
 	<h1>in {props.location}</h1>
 )
+WeatherLocation.propTypes =  {
+	location: PropTypes.string
+}
 
 const Weather = (props) => {
 	let hideContent = (isFetching(props.fetching) || props.message !== null)
@@ -269,6 +292,11 @@ const Weather = (props) => {
 		</Grid>
 	)
 }
+Weather.propTypes =  {
+	weather: PropTypes.object.isRequired,
+	scale: PropTypes.string.isRequired,
+	handleScaleClick: PropTypes.func.isRequired
+}
 
 const Message = (props) => (
 	<Grid>
@@ -280,6 +308,9 @@ const Message = (props) => (
 		</Col>
 	</Grid>
 )
+Message.propTypes =  {
+	message: PropTypes.string
+}
 
 /*
  * React-Redux Container Components
