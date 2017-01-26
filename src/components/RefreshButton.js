@@ -1,19 +1,18 @@
 import React, { PropTypes } from 'react'
 import { Button, Glyphicon } from 'react-bootstrap'
+import './RefreshButton.css'
 
 const RefreshButton = (props) => {
-	let buttonMessage = 'Check your local weather'
-	let glyph = 'map-marker'
+	let buttonMessage = ''
 	let className = ''
 	if (props.fetching) {
-		buttonMessage = 'Checking...'
-		glyph = 'refresh'
+		buttonMessage = 'Refreshing...'
 		className = 'glyph-spin'
 	}
 	return (
-		<Button disabled={props.fetching} onClick={() => props.onClick()}>
-			<Glyphicon className={className} glyph={glyph} />{' ' + buttonMessage}
-		</Button>
+		<div className='refresh-button' onClick={() => props.onClick()}>
+			<Glyphicon className={className} glyph='refresh' /><span className='refresh-message'>{buttonMessage}</span>
+		</div>
 	)
 }
 RefreshButton.propTypes =  {

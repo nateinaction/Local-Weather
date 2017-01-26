@@ -21,7 +21,7 @@ class Now extends Component {
 		return (
       <Grid className="section light-section weather" fluid>
         <Row>
-					<Col className='weather-app' xs={1} xsOffset={1}>
+					<Col className='weather-app' xs={11} xsOffset={1}>
 						<RefreshButton
 							fetching={this.props.fetching}
 							onClick={this.props.handleFetchCoords} />
