@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react'
 
-const WeatherLocation = (props) => (
+const Location = (props) => (
 	<h1>{props.location}</h1>
 )
-WeatherLocation.propTypes =  {
+Location.propTypes =  {
 	location: PropTypes.string
 }
 
-export default WeatherLocation
+export default Location

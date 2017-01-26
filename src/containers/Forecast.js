@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Forecast = (props) => (
-  <div>
+  <div className='section'>
     <p>{'Forecast Container'}</p>
   </div>
 )

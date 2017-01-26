@@ -1,12 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux'
-import { Grid, Row,  Col } from 'react-bootstrap'
-import './now.css'
+import { Col } from 'react-bootstrap'
+import './Now.css'
 
 import actions from '../redux/actions'
-import WeatherIcon from '../components/WeatherIcon'
-import WeatherTempAndCondition from '../components/WeatherTempAndCondition'
-import WeatherLocation from '../components/WeatherLocation'
+import Icon from '../components/Icon'
+import Temp from '../components/Temp'
+import Condition from '../components/Condition'
+import Location from '../components/Location'
 import RefreshButton from '../components/RefreshButton'
 import Message from '../components/Message'
 
@@ -19,36 +20,38 @@ class Now extends Component {
 	render() {
     let hide = (this.props.weather.location === null)
 		return (
-      <Grid className="section light-section weather" fluid>
-        <Row>
-					<Col className='weather-app' xs={11} xsOffset={1}>
-						<RefreshButton
-							fetching={this.props.fetching}
-							onClick={this.props.handleFetchCoords} />
+    	<div className="section now-cast">
+				<Col className='weather-app' xs={11} xsOffset={1}>
+					<RefreshButton
+						fetching={this.props.fetching}
+						onClick={this.props.handleFetchCoords} />
+				</Col>
+    		<Col className='weather-app' xs={12}>
+    			<Col xs={12} className='weather-icon' hidden={hide}>
+						<Icon icon={this.props.weather.icon} />
 					</Col>
-      		<Col className='weather-app' xs={12}>
-      			<Col xs={12} className='weather-icon' hidden={hide}>
-							<WeatherIcon icon={this.props.weather.icon} />
-						</Col>
-      			<Col xs={12} hidden={hide}>
-      				<WeatherTempAndCondition
-      					weather={this.props.weather}
-      					scale={this.props.scale}
-      					handleScaleClick={this.props.handleScaleClick} />
-      			</Col>
-      			<Col xs={12} hidden={hide}>
-							<WeatherLocation location={this.props.weather.location} />
-						</Col>
-      		</Col>
+					<Col xs={12} className='temp-col'>
+						<Temp
+							temp={this.props.weather.temp}
+							scale={this.props.scale}
+							onScaleClick={this.props.handleScaleClick} />
+					</Col>
+					<Col xs={12} className='condition-col'>
+						<Condition
+							condition={this.props.weather.condition} />
+					</Col>
+    			<Col xs={12} hidden={hide}>
+						<Location
+							location={this.props.weather.location} />
+					</Col>
+    		</Col>
 
-					<Message
-						message={this.props.message} />
-        </Row>
-      </Grid>
+				<Message
+					message={this.props.message} />
+      </div>
 		)
 	}
 }
-
 Now.propTypes = {
 	weather: PropTypes.object.isRequired,
 	scale: PropTypes.string.isRequired,
@@ -67,7 +70,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-	handleFetchWeather: (lat, lon) => dispatch(actions.fetchWeather(lat, lon)),
+	handleFetchWeather: () => dispatch(actions.fetchWeather()),
 	handleFetchCoords: () => dispatch(actions.fetchCoords()),
 	handleScaleClick: () => dispatch(actions.scaleClick())
 })

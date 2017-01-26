@@ -23,13 +23,13 @@ const getIcon = {
 	'unknown': 'day-sunny'
 }
 
-const WeatherIcon = (props) => {
+const Icon = (props) => {
 	let icon = getIcon[props.icon] || 'day-sunny'
 	let className = 'wi wi-' + icon
 	return <i className={className} />
 }
-WeatherIcon.propTypes =  {
+Icon.propTypes =  {
 	icon: PropTypes.string
 }
 
-export default WeatherIcon
+export default Icon

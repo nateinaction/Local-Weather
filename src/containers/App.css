@@ -1,0 +1,7 @@
+.weather-app, .weather-app div {
+  height: 100%;
+}
+
+.section {
+	height: initial !important;
+}

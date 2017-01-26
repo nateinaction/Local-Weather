@@ -4,13 +4,7 @@ import { Provider } from 'react-redux'
 import store from './redux/store'
 
 import './index.css';
-import Now from './containers/Now'
-
-const App = (props) => (
-  <div className="App">
-    <Now />
-  </div>
-)
+import App from './containers/App'
 
 render(
   <Provider store={store}>

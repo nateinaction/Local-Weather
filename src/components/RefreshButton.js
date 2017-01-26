@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Button, Glyphicon } from 'react-bootstrap'
+import { Glyphicon } from 'react-bootstrap'
 import './RefreshButton.css'
 
 const RefreshButton = (props) => {

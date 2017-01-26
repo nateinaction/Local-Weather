@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Today = (props) => (
-  <div>
+  <div className='section'>
     <p>{'Today Container'}</p>
   </div>
 )

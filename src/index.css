@@ -1,8 +1,17 @@
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
   background-color: #eee;
   font-family: 'Open Sans', sans-serif;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
 }
 
 h1, h2, h3, h4 {
@@ -46,6 +55,9 @@ p {
 
 .section {
   padding: 2.5rem 0;
+  float:left;
+  width:100%;
+  position: relative;
 }
 
 .dark-section {
